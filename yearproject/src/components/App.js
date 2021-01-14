@@ -9,19 +9,26 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reducers from '../reducers/PeopleReducer';
-import Navigation from './Navigation';
+import { createStore,compose, applyMiddleware } from 'redux';
+import reducers from '../reducers';
+import NavigationController from './navigation/NavigationController';
 import thunk from 'redux-thunk';
 
-const store = createStore(reducers, applyMiddleware(thunk));
 
-type Props = {};
-export default class App extends Component<Props> {
+const store = createStore(
+  reducers,
+  compose(
+    applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+  )
+);
+// const store = createStore(reducers, applyMiddleware(thunk));
+
+
+export default class App extends Component{
   render() {
     return (
       <Provider store={store}>
-        <Navigation />
+        <NavigationController />
       </Provider>
     );
   }

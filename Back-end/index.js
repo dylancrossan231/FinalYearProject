@@ -11,6 +11,8 @@ const app = express();
 //import routes
 const authRoute = require('./src/routes/auth')
 const postRoute = require('./src/routes/posts')
+const workoutsRoute = require('./src/routes/workouts')
+
 
 
 
@@ -32,6 +34,8 @@ app.use(express.json());
 //Route middlewares
 app.use('/api/posts', postRoute);
 app.use('/api/user', authRoute);
+app.use('/api/workouts', workoutsRoute);
+
 
 
 

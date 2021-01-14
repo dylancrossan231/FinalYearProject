@@ -28,7 +28,7 @@ export const createNewContact = ({email, password}) => {
         console.log(email)
         console.log(password)
 
-        fetch('http://192.168.1.31:3000/api/user/register', {
+        fetch('http://192.168.1.19:3000/api/user/register', {
             method: "POST",
  
             headers: {
@@ -50,7 +50,7 @@ export const createNewContact = ({email, password}) => {
 
 export const loadInitialContacts = () => {
     return (dispatch) => {
-        fetch('http://192.168.1.31:3000/contacts')
+        fetch('http://192.168.1.19:3000/contacts')
         .then((response) => {return response.json();})
         .then((data)=>{
             dispatch({type:'INITIAL_FETCH' , payload:data})
@@ -70,7 +70,7 @@ export const login = ({ email, password}) => {
                     }
 
 
-        fetch('http://192.168.1.31:3000/api/user/login', {
+        fetch('http://192.168.1.19:3000/api/user/login', {
             method: "POST",
             body: JSON.stringify({ "email": email,
             "password": password,
@@ -85,12 +85,39 @@ export const login = ({ email, password}) => {
         .then(response => response.json())
         .then((data) => {
             console.log(data);
-            AsyncStorage.setItem('token',response.token.text())
+            AsyncStorage.setItem('token',data.token)
             dispatch({ type: 'USER_LOGGED_IN', payload: data });
         })
         .catch(error => console.log(error))
     };
 };
+
+
+export const loadInitialWorkouts = (token) => {
+    return (dispatch) => {
+        dispatch({type:'SET_LOADING' })
+        fetch('http://192.168.1.19:3000/api/workouts', {
+            
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "auth-token": token
+            }
+        })
+        .then((response) => {return response.json();})
+        .then((data)=>{
+            dispatch({type:'INITIAL_FETCH_WORKOUTS' , payload:data})
+            
+        })
+        .catch((error)=> {
+            console.log('error load workouts!', error)
+            return dispatch({ type: 'SET_ERROR', payload: 'Error: Could not connect to the server'})
+        }
+            )
+    };
+};
+
 
 
 

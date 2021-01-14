@@ -3,15 +3,20 @@ import { Alert, Button, Text, TouchableOpacity, TextInput, View, StyleSheet } fr
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 
 class loginScreen extends Component {
+  static navigationOptions = {
+    tabBarIcon: ({tintColor}) => (
+        <Icon name={'plus'} size={50} color={tintColor} />
+    )
+}
 
-
-    props = {
-      email: '',
-      password: '',
-    };
+    // props = {
+    //   email: '',
+    //   password: '',
+    // };
   
   
   onLogin() {
@@ -19,7 +24,9 @@ class loginScreen extends Component {
     this.props.login({ email, password});
 
     // Alert.alert('Credentials', `email: ${email} + password: ${password}`);
-    this.props.navigation.navigate('AddPerson');
+    this.props.navigation.navigate('People');
+
+    
 
   }
 
@@ -77,7 +84,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    const { email ,password} = state;
+    const { email ,password} = state.people;
     return {email ,password  };
 }
 export default connect(mapStateToProps, actions)(loginScreen);
