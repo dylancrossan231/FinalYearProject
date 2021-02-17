@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Alert, Button, Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react-native';
+import {Text, View, StyleSheet, ScrollView} from 'react-native';
+import {Container, Header, Content, Item, Input ,Button} from 'native-base';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { MKTextField, MKColor, MKButton } from 'react-native-material-kit';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
 
@@ -12,75 +12,102 @@ class loginScreen extends Component {
         <Icon name={'plus'} size={50} color={tintColor} />
     )
 }
-
-    // props = {
-    //   email: '',
-    //   password: '',
-    // };
-  
   
   onLogin() {
     const { email, password } = this.props;
     this.props.login({ email, password});
 
-    // Alert.alert('Credentials', `email: ${email} + password: ${password}`);
     this.props.navigation.navigate('People');
 
-    
 
   }
 
   render() {
     return (
-      <View style={styles.form}>
-          
-      <Text style={styles.titleText}>Login</Text>
-        <MKTextField
-            textInputStyle={styles.fieldStyles}
-            placeholder={'Email...'}
-            tintColor={MKColor.Teal}
-            value={this.props.email}
-            onChangeText={value => this.props.formUpdate({ prop: 'email', value})}
-        />
-        <MKTextField
-            textInputStyle={styles.fieldStyles}
-            placeholder={'Password'}
-            tintColor={MKColor.Teal}
-            value={this.props.password}
-            onChangeText={value => this.props.formUpdate({ prop: 'password', value})}
-        />
-        
-     
-        <View style={styles.addButton}>
-            <Button
-            title="Login"
-            onPress= {this.onLogin.bind(this)}
-            />                   
-        </View>
-        
-      </View>
+      <Container>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.form}>
+            <Text style={styles.titleStyle}>Login</Text>
+
+            <Content>
+              <Item
+                rounded
+                style={styles.textFieldStyle}
+                placeholder={'Email...'}
+                value={this.props.email}>
+                <Input
+                  onChangeText={(value) =>
+                    this.props.formUpdate({prop: 'email', value})
+                  }
+                  placeholder="Email Address"
+                />
+              </Item>
+            </Content>
+            <Content>
+              <Item
+                rounded
+                style={styles.textFieldStyle}
+                placeholder={'Password'}
+                value={this.props.password}>
+                <Input
+                  onChangeText={(value) =>
+                    this.props.formUpdate({prop: 'password', value})
+                  }
+                  placeholder="Password"
+                />
+              </Item>
+            </Content>
+
+            <View style={styles.addButton}>
+              <Button
+                block
+                rounded
+                title="Register"
+                style={styles.btnStyle}
+                onPress={this.onLogin.bind(this)}>
+                <Text style={styles.btnText}>Login</Text>
+              </Button>
+            </View>
+          </View>
+        </ScrollView>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    useNativeDriver: true,
+  useNativeDriver: true,
 
-    form: {
-        flex: 1,
-        paddingTop: 50,
-        paddingBottom: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-        justifyContent: 'space-between',
-    },
-    fieldStyles: {
-        height: 40,
-        color: MKColor.Orange,
-    },
-    addButton: {
-        marginTop: 20,
-    },
+  form: {
+    flex: 1,
+    paddingTop: 50,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    justifyContent: 'space-between',
+  },
+  fieldStyles: {
+    height: 40,
+  },
+  addButton: {
+    marginTop: 40,
+    color: '#5DB075',
+  },
+  btnStyle: {
+    backgroundColor: '#5DB075',
+  },
+  btnText: {
+    color: 'white',
+  },
+  textFieldStyle: {
+    backgroundColor: '#F5F5F5',
+    marginTop: 40,
+  },
+  titleStyle: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 40,
+  },
 });
 
 const mapStateToProps = state => {

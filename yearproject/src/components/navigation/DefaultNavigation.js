@@ -6,22 +6,22 @@ import loginScreen from '../loginScreen';
 
 
 const DefaultTabNavigator = createBottomTabNavigator(
-    {
-        AddPerson: AddPerson,
-        Login: loginScreen
+  {
+    AddPerson: AddPerson,
+    Login: loginScreen,
+  },
+  {
+    initialRouteName: 'Login',
+    tabBarOptions: {
+      activeTintColor: 'white',
+      inactiveTintColor: '#80cbc4',
+      showLabel: false,
+      showIcon: true,
+      style: {
+        backgroundColor: '#5DB075',
+      },
     },
-    {
-        initialRouteName: 'Login',
-        tabBarOptions: {
-            activeTintColor: 'white',
-            inactiveTintColor: '#80cbc4',
-            showLabel: false,
-            showIcon: true,
-            style: {
-                backgroundColor: '#26a69a'
-            }
-        },
-    }
+  },
 );
 
 // export default connect(mapStateToProps, actions)(AddPerson);
