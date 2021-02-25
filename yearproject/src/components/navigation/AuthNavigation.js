@@ -1,36 +1,45 @@
 /**
  * MY LEGS ARE BIGGER THAN MY PERSONALITY
  */
-
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {createAppContainer} from 'react-navigation';
+import {createNavigationContainer} from 'react-navigation';
+import { createStackNavigator} from 'react-navigation-stack';
 import PeopleList from '../PeopleList';
 import CompanyList from '../CompanyList';
 import WorkoutsHome from '../WorkoutsHome';
 import AddWorkout from '../AddWorkout';
 
-const AuthTabNavigator = createBottomTabNavigator(
-  {
-    People: PeopleList,
-    Company: CompanyList,
-    Workout: WorkoutsHome,
-  },
-  {
-    initialRouteName: 'People',
+const Stack = createStackNavigator()
 
-    tabBarOptions: {
-      activeTintColor: 'white',
-      inactiveTintColor: '#80cbc4',
-      showLabel: false,
-      showIcon: true,
-      style: {
-        backgroundColor: '#5DB075',
-      },
-    },
-  },
-);
+const workoutNavigator = (props) => {
+  <Stack.Navigator {...props}>
+    <Stack.Screen name="AddWorkout" component={AddWorkout} />
+  </Stack.Navigator>
+}
+const Tab = createBottomTabNavigator();
+  
+const AuthTabNavigator = (props) => {
+      <Tab.Navigator {...props}>
+        <Tab.Screen name="People" component={PeopleList} />
+        <Tab.Screen name="Company" component={CompanyList} />
+        <Tab.Screen name="Workout" component={WorkoutsHome} />
+      </Tab.Navigator>;
 
-// export default connect(mapStateToProps, actions)(AddPerson);
+}
 
-export default createAppContainer(AuthTabNavigator);
-// export default connect(mapStateToProps, actions)(TabNavigatorComponent);
+const MainNavigator = (props) => {
+  // <NavigationContainer>
+  <Stack.Navigator>
+    <Stack.Screen name="WorkoutNavigator" component={workoutNavigator} />
+  </Stack.Navigator>
+  // </NavigationContainer>
+
+}
+
+// const MainNavigator = createStackNavigator({
+//   AuthTabNavigator: AuthTabNavigator,
+//   AuthStackNavigator: StackNavigator,
+// }, {initialRouteName: 'AuthTabNavigator'});
+
+
+export default createNavigationContainer(MainNavigator);

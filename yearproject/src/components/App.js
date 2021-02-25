@@ -11,9 +11,16 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import {Provider} from 'react-redux';
 import {createStore, compose, applyMiddleware} from 'redux';
 import reducers from '../reducers';
-import NavigationController from './navigation/NavigationController';
+// import NavigationController from './navigation/NavigationController';
 import thunk from 'redux-thunk';
-import StackNavigator from './navigation/StackNavigator';
+
+
+/**
+ * Navigation dependencies & modules
+ */
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthNavigator } from "./navigation_new/auth.navigator";
+
 
 const store = createStore(
   reducers,
@@ -26,11 +33,14 @@ const store = createStore(
 );
 // const store = createStore(reducers, applyMiddleware(thunk));
 
+
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <NavigationController />
+        <NavigationContainer>
+          <AuthNavigator />
+        </NavigationContainer>
       </Provider>
     );
   }

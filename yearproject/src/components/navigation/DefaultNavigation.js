@@ -24,8 +24,6 @@ const DefaultTabNavigator = createBottomTabNavigator(
   },
 );
 
-// export default connect(mapStateToProps, actions)(AddPerson);
 
 export default createAppContainer(DefaultTabNavigator);
-// export default connect(mapStateToProps, actions)(TabNavigatorComponent);
 

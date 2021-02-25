@@ -1,12 +1,17 @@
-import people from "./people.json"
-
 const initialState = {
-    people: people,
     detailView: false,
     personSelected: null,
     email: '',
     password: '',
     token: '',
+    first_name: '',
+    last_name: '',
+    username: '',
+    weight: '',
+    height: '',
+    D_O_B: '',
+    gender: '',
+    
 
 }
 

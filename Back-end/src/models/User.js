@@ -14,12 +14,49 @@ const UserSchema = new mongoose.Schema({
     min: 6,
     max: 1024,
   },
-  workouts: [{ type: Schema.Types.ObjectId, ref: "Workouts" }],
-
-  created_date: {
-    type: Date,
-    default: Date.now,
-  },
+  workouts: 
+  [{ 
+    type: Schema.Types.ObjectId, ref: "Workouts" 
+  }],
+  // first_name: {
+  //   type: String,
+  //   trim: true,
+  //   unique: "Email already exists",
+  //   required: "First Name is required",
+  // },
+  // username: {
+  //   type: String,
+  //   trim: true,
+  //   unique: "Email already exists",
+  //   required: "First Name is required",
+  // },
+  // last_name: {
+  //   type: String,
+  //   trim: true,
+  //   required: "Last Name is required",
+  // },
+  // weight: {
+  //   type: Number,
+  //   trim: true,
+  // },
+  // height: {
+  //   type: Number,
+  //   trim: true,
+  // },
+  // D_O_B: {
+  //   type: Date,
+  //   required: true,
+  //   trim: true,
+  // },
+  // gender: {
+  //   type: String,
+  //   trim: true,
+  //   enum: ["Male", "Female", "Other"],
+  // },
+  // created_date: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
 });
 
 module.exports = mongoose.model("User", UserSchema);

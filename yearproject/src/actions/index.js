@@ -20,8 +20,16 @@ export const formUpdate = ({prop, value}) => {
   };
 };
 
-export const createNewContact = ({email, password}) => {
+export const createNewContact = ({email, password, first_name, last_name, username, weight, height, D_O_B, gender}) => {
   return (dispatch) => {
+
+    console.log(first_name);
+    console.log(last_name);
+    console.log(username);
+    console.log(weight);
+    console.log(height);
+    console.log(D_O_B);
+    console.log(gender);
     console.log(email);
     console.log(password);
 
@@ -35,6 +43,13 @@ export const createNewContact = ({email, password}) => {
       body: JSON.stringify({
         email: email,
         password: password,
+        first_name: first_name,
+        last_name: last_name,
+        username: username,
+        weight: weight,
+        height: height,
+        D_O_B: D_O_B,
+        gender: gender,
       }),
     })
       .then((response) => console.log(response))

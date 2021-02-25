@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList,Text } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import PeopleItem from './PeopleItem';
@@ -40,7 +40,7 @@ class PeopleList extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {this.renderInitialView()}
+                <Text>HELLLO</Text>
             </View>
         )
     }
